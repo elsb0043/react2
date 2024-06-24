@@ -1,0 +1,9 @@
+dialog {
+    padding: 10%;
+    margin: 10%;
+    text-align: center;
+
+    h2 {
+        padding-bottom: 6%;
+    }
+}
