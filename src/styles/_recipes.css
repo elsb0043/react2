@@ -1,5 +1,6 @@
 .recipes{
   display: grid;
-  grid-template-columns: auto auto auto;
+  grid-template-columns: repeat(3, 1fr);
   list-style: none;
+  margin-left: 10%;
 }
