@@ -2,12 +2,25 @@ import { useEffect, useState } from "react"
 
 const useFetch = () => {
   const [recipes, setRecipes] = useState([])
+  const [error, setError] = useState(null)
+  const [isLoading, setIsLoading] = useState(false)
 
   const fetchRecipes = async () => {
-    const response = await fetch("https://dummyjson.com/recipes")
-    const data = await response.json()
-    setRecipes(data.recipes)
-    console.log(recipes)
+    setError(null)
+    setIsLoading(true)
+
+    try {
+        const response = await fetch("https://dummyjson.com/recipes")
+        const data = await response.json()
+        setRecipes(data.recipes)
+
+    } catch (error) {
+        setError(error.message)
+        console.error("Error fetching recipes:", error)
+
+    } finally {
+        setIsLoading(false)
+    }
   }
 
   let rating = recipes.filter((recipe) => recipe.rating > 4.8)
@@ -28,7 +41,7 @@ const useFetch = () => {
   }, [])
 
 
-  return { recipes, rating, breakfast, lunch, dinner }
+  return { recipes, rating, breakfast, lunch, dinner, error, isLoading }
 
 }
 

@@ -5,8 +5,6 @@ import PageHeader from "../../components/pageHeader/PageHeader"
 const RecipeDetail = () => {
   const { id } = useParams()
   const recipe = useFetchById(id)
-  console.log(recipe)
-
 
   return (
     <div>

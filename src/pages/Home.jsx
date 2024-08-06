@@ -21,13 +21,14 @@ const Home = () => {
         <SectionHeader 
           title='Brugernes Favoritter'
         />
-        
         <Favorites />
+
 
         <SectionHeader 
           title='Mine Favoritter'
         />
         <MyFavorites />
+        
 
         <SectionHeader
           title='Nyhedsbrev'

@@ -4,10 +4,11 @@ import useFetch from "../../hooks/useFetch"
 import Button from "../../components/button/Button"
 import PageHeader from "../../components/pageHeader/PageHeader"
 import useFetchById from "../../hooks/useFetchById"
+import Loader from "../../components/loader/Loader"
 
 
 const Recipes = () => {
-  const { recipes, breakfast, lunch, dinner } = useFetch()
+  const { recipes, breakfast, lunch, dinner, error, isLoading } = useFetch()
 
   const [filteredRecipes, setFilteredRecipes] = useState([...breakfast])
   const [activeFilter, setActiveFilter] = useState("All")
@@ -29,6 +30,11 @@ const Recipes = () => {
   const recipe = useFetchById(9)
 
   return (
+    <>
+    {isLoading ? (
+      <Loader />
+    ) : (
+    
     <section>
       <PageHeader
         title='Opskrifter' 
@@ -60,12 +66,14 @@ const Recipes = () => {
 
       <div className="recipes">
         {recipesArray.map((recipe) => ( 
-          <li key={recipe.id}>
-            <RecipeCard recipe={recipe} />
-          </li>
+           <li key={recipe.id}>
+              <RecipeCard recipe={recipe} />
+           </li>
         ))}
       </div>
-    </section>
+      </section>
+    )}
+    </>
   )
 }
 
