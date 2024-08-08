@@ -31,10 +31,9 @@ const Recipes = () => {
 
   return (
     <>
-    {isLoading ? (
+    {isLoading ? ( // Hvis isLoading er true(hvis den er igang med at hente data), så skal loader komponent vises
       <Loader />
-    ) : (
-    
+    ) : ( // Hvis den er false, så skal den vise vores side med vores data
     <section>
       <PageHeader
         title='Opskrifter' 
@@ -63,6 +62,10 @@ const Recipes = () => {
           onClick={() => handleFilterChange("Dinner")}
         />
       </div>
+
+      {/* Hvis den ikke kan hente siden, så skal der vises en fejlbesked */}
+      {error && <p>Kunne ikke hente opskrifterne. Fejl: {error}</p>}
+
 
       <div className="recipes">
         {recipesArray.map((recipe) => ( 
